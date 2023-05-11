@@ -1,0 +1,35 @@
+docker run --name es01 \
+  -p 9200:9200 \
+  -p 9300:9300 \
+  -m 4gb \
+  -d docker.elastic.co/elasticsearch/elasticsearch:8.3.0
+
+
+# copy cert
+docker cp es01:/usr/share/elasticsearch/config/certs/http_ca.crt .
+
+# password
+elasticsearch@596dac8171a3:~$ bin/elasticsearch-reset-password -u elastic
+Password for the [elastic] user successfully reset.
+New value: uasqMv6-r_az3-vGLALN
+
+# test 
+ curl --cacert http_ca.crt -u elastic https://localhost:9200                                                 INT ✘ ╱ 34s ╱ 09:56:17
+
+Enter host password for user 'elastic':
+{
+  "name" : "596dac8171a3",
+  "cluster_name" : "docker-cluster",
+  "cluster_uuid" : "SRcCXc3oQqCJcO2ON9QiJA",
+  "version" : {
+    "number" : "8.3.0",
+    "build_type" : "docker",
+    "build_hash" : "5b8b981647acdf1ba1d88751646b49d1b461b4cc",
+    "build_date" : "2022-06-23T22:48:49.607492124Z",
+    "build_snapshot" : false,
+    "lucene_version" : "9.2.0",
+    "minimum_wire_compatibility_version" : "7.17.0",
+    "minimum_index_compatibility_version" : "7.0.0"
+  },
+  "tagline" : "You Know, for Search"
+}
