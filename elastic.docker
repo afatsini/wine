@@ -33,3 +33,7 @@ Enter host password for user 'elastic':
   },
   "tagline" : "You Know, for Search"
 }
+
+# create index
+
+curl --cacert http_ca.crt -XPUT -d @priv/elastic/wine_index.json -u elastic https://localhost:9200/wine -H 'Content-Type: application/json'

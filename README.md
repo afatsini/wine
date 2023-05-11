@@ -1,18 +1,20 @@
 # Wine
 
-To start your Phoenix server:
+Based on https://dockyard.com/blog/2022/09/28/semantic-search-with-phoenix-axon-and-elastic
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+python dependencies:
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```
+asdf plugin-add python
+asdf install python 3.9.16
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+asdf local python 3.9.16
 
-## Learn more
+pip install transformers
+pip install tensorflow
+pip install onnx
+pip install tf2onnx
+pip install onnxruntime
+python -m transformers.onnx --model=bert-base-uncased priv/models/
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+```
